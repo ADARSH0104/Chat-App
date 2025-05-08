@@ -82,6 +82,13 @@ export const logout=(req,res)=>{
         
     }
 }
-export const updateProfile=(req,res)=>{
-
+export const updateProfile=async(req,res)=>{
+ try {
+    const {profilepic} = req.body;
+    if(!profilepic) return res.status(400).json({message:"Profile pic is required"});
+   const updateResponse=await cloudinary.uploader.upload(profilepic)
+   const updateUser=
+ } catch (error) {
+    
+ }
 }

@@ -43,7 +43,7 @@ export const signup=async (req,res)=>{
         }
    } catch (error) {
         console.log("server error",error.message);
-        res.status(500).json({message:"Internal server error"});
+        res.status(500).json({error:"Internal server error"});
    }
 }
 export const login=async(req,res)=>{
@@ -71,7 +71,7 @@ export const login=async(req,res)=>{
     });
     } catch (error) {
     console.log("Login controller error",error.message);
-    res.status(500).json({message:"Internal server error"});
+    res.status(500).json({error:"Internal server error"});
     }
 }
 export const logout=(req,res)=>{
@@ -79,7 +79,8 @@ export const logout=(req,res)=>{
         res.cookie("jwt","",{maxAge:0});
         res.status(200).json({message:"Logout Successful"});
     } catch (error) {
-        
+        console.log("Logout controller error",error.message);
+    res.status(500).json({error:"Internal server error"});
     }
 }
 export const updateProfile=async(req,res)=>{
@@ -91,7 +92,7 @@ export const updateProfile=async(req,res)=>{
    res.status(200).json(updateUser);
  } catch (error) {
     console.log("Profile update error",error.message)
-    res.status(500).json({message:"Internal server error"});
+    res.status(500).json({error:"Internal server error"});
  }
 }
 
@@ -100,6 +101,6 @@ try {
     res.status(200).json(req.user);
 } catch (error) {
     console.log("check Auth controller error",error.message);
-    res.status(500).json({message:"Internal server error"});
+    res.status(500).json({error:"Internal server error"});
 }
 }
